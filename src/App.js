@@ -1,15 +1,22 @@
-import './App.css';
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Tracker from "./pages/Tracker";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          This is the landing page.
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="tracker" element={<Tracker />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById("root"));
