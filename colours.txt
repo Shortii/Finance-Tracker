@@ -1,2 +1,2 @@
-#2596be - main background colour
-#1e7898 - header colours
+#66b6d2 - main background colour
+#51abcb - header colours
