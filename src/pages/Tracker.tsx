@@ -1,47 +1,61 @@
-import { FormControl, InputAdornment, InputLabel, MenuItem, NativeSelect, TextField } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
 import React from "react";
+import FormSelectField from "../components/form-select-field";
+import FormTextField from "../components/form-text-field";
+import Typography from "@mui/material/Typography";
+import FormLabel from "@mui/material/FormLabel";
+import Grid from "@mui/material/Grid";
+import FormButtonAdd from "../components/form-button-add";
 
-export default function Tracker() {
-    const [amount, setAmount] = React.useState("");
-    const [type, setType] = React.useState("");
-    const [amountError, setAmountError] = React.useState(false);
-
-    const handleAmountChange = (e) => {
-        setAmount(e.target.value);
-        !parseFloat(amount) ? setAmountError(true) : setAmountError(false);
-    }
-
-    const handleTypeChange = (e) => {
-        setType(e.target.value);
-    }
-
+const Tracker = () => {
+    const selectOptions = {
+        "entertainment": "Entertainment",
+        "food-and-drink": "Food & Drink",
+        "other": "Other"
+    };
     return (
-        <div>
-            <h1>
+        <Box sx={{ flexGrow: 1 }}>
+            <Typography
+                variant="h2"
+                component="h2"
+                sx={{
+                    margin: 4
+                }}>
                 Tracker
-            </h1>
-            <FormControl>
-                <InputLabel>Expense Type</InputLabel>
-                <NativeSelect
-                    value={type}
-                    onChange={handleTypeChange}
-                >
-                    <option value={"entertainment"}>Entertainment</option>
-                    <option value={"food-drink"}>Food &#38; Drink</option>
-                    <option value={"other"}>Other</option>
-                </NativeSelect>
-                <TextField
-                    label="Amount Spent"
-                    error={amountError}
-                    helperText={amountError ? "Enter a valid number" : ""}
-                    value={amount}
-                    onChange={handleAmountChange}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                    }}
-                />
-            </FormControl>
+            </Typography>
 
-        </div >
+            <FormControl
+                sx={{
+                    margin: 4,
+                    display: "inline-flex"
+                }}>
+                <Grid container spacing={1}>
+                    <Grid
+                        xs={4}
+                        sx={{ padding: 1 }}>
+                        <FormLabel>Expense Amount</FormLabel>
+                        <FormTextField adornment={"$"} errorMsg={"Enter a valid amount"}/>
+                    </Grid>
+
+                    <Grid
+                        xs={4}
+                        sx={{ padding: 1 }}>
+                        <FormLabel>Expense Type</FormLabel>
+                        <FormSelectField arr={selectOptions} defaultText={"Select an expense type"} />
+                    </Grid>
+
+                    <Grid
+                        xs={4}
+                        sx={{ padding: 5 }}>
+                        <FormButtonAdd label={"Add Expense"} />
+                    </Grid>
+                </Grid>
+
+            </FormControl>
+        </Box >
     );
 }
+
+export default Tracker;
