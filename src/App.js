@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Tracker from "./pages/Tracker";
+import Layout from "./pages/layout";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Tracker from "./pages/tracker";
 
 export default function App() {
   return (
